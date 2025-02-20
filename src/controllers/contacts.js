@@ -1,4 +1,3 @@
-// src/controllers/contacts.js
 import mongoose from 'mongoose';
 import {
   createContact,
@@ -8,9 +7,18 @@ import {
   updateContact,
 } from '../services/contacts.js';
 import createHttpError from 'http-errors';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseSortParams } from '../utils/parseSortParams.js';
 
 export const getContactsController = async (req, res) => {
-  const contacts = await getAllcontacts();
+  const { page, perPage } = parsePaginationParams(req.query);
+  const { sortOrder, sortBy } = parseSortParams(req.query);
+  const contacts = await getAllcontacts({
+    page,
+    perPage,
+    sortBy,
+    sortOrder,
+  });
 
   res.status(200).json({
     status: 200,
@@ -55,8 +63,8 @@ export const deleteContactController = async (req, res) => {
   const contact = await deleteContact(contactId);
 
   if (!contact) {
-   throw (createHttpError(404, 'Contact not found'));
-  
+    throw (createHttpError(404, 'Contact not found'));
+    
   }
 
   res.status(204).send();
@@ -68,8 +76,8 @@ export const upsetrtContactController = async (req, res) => {
   const result = await updateContact(contactId, req.body);
 
   if (!result) {
-   throw (createHttpError(404, 'Contact not found'));
-    
+  throw (createHttpError(404, 'Contact not found'));
+
   }
 
   const status = result.isNew ? 201 : 200;
@@ -87,7 +95,7 @@ export const patchContactController = async (req, res) => {
   const result = await updateContact(contactId, req.body);
 
   if (!result) {
-   throw (createHttpError(404, 'Contact not found'));
+    throw (createHttpError(404, 'Contact not found'));
     
   }
 
