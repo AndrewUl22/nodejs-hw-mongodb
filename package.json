@@ -9,7 +9,7 @@
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "Svitlana Mykhailiuk <svetiklan@gmail.com>",
+  "author": "Andrew Ul anulian22@gmail.com",
   "license": "ISC",
   "description": "",
   "devDependencies": {
