@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { CONTACT_TYPE } from '../constans/contacts.js';
 
 export const addContactSchema = Joi.object({
-  name: Joi.string().min(3).max(20).required(),
+  name: Joi.string().min(3).max(20).required(), // Ім'я має бути рядком від 3 до 20 символів
   phoneNumber: Joi.string().min(3).max(20).required(),
   email: Joi.string().email().min(3).max(20).allow(null),
   isFavourite: Joi.boolean(),
