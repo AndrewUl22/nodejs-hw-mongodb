@@ -9,7 +9,7 @@
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "Andrew Ul anulian22@gmail.com",
+  "author": "Andrew Ulianov anulian22@gmail.com",
   "license": "ISC",
   "description": "",
   "devDependencies": {
